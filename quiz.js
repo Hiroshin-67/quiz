@@ -1,8 +1,6 @@
 // DOM 
-const question = document.getElementById('qusetion');
+const question = document.getElementById('question');
 const resChoices = document.getElementById('resChoices');
-// const addBtn = document.getElementById('add');
-// const delBtn = document.getElementById('del');
 
 const button = {
   addBtn : document.getElementById('add'),
@@ -34,7 +32,7 @@ const quizList = {
   },
   checkEnd : function(){
     if(this.quizCount === this.quizLen){
-      document.getElementById("question").innerHTML = "正解数は"+quizList.correctAns+"／"+quizList.quizLen+"個です．";
+      question.innerHTML = "正解数は"+quizList.correctAns+"／"+quizList.quizLen+"個です．";
       alert('終了');
     }
   },
@@ -47,7 +45,7 @@ function delQuiz() {
   while (resChoices.firstChild) {
     resChoices.removeChild(resChoices.firstChild);
   }
-  document.getElementById('question').innerHTML = " "
+  question.innerHTML = " "
 }
 
 function checkError(fn){
@@ -69,7 +67,7 @@ async function getQuizes() {
 
 function makeQuiz(){
   //問題文を変更
-  document.getElementById('question').innerHTML = quizList.quiz.question;
+  question.innerHTML = quizList.quiz.question;
   // 選択肢を画面に追加する
   Object.keys(quizList.quiz.choices).forEach(function(key){
     const  choiceList = document.createElement("button");
