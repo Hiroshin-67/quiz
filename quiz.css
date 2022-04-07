@@ -1,0 +1,32 @@
+.quiz {
+  font-size: 40px;
+  margin: 0 10%;
+  background-color: aquamarine;
+}
+
+#question{
+  text-align: center;
+  padding: 5% 10%;
+  margin-bottom: 5%;
+  background-color: brown;
+}
+
+div #resChoices {
+  text-align: center;
+  background-color: blanchedalmond;
+}
+
+div > button {
+  width: 350px;
+  padding: 2% 5%;
+  text-align: center;
+  margin: 10px auto;
+  border-radius: 5%;
+  border-style: solid;
+  display: flex;
+  flex-direction: row;
+}
+div > button:hover{
+  padding: 2.1% 5.1%;
+  background-color: aquamarine;
+}
