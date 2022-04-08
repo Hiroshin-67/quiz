@@ -6,6 +6,8 @@ const button = {
   addBtn : document.getElementById('add'),
   delBtn : document.getElementById('del'),
   reloadBtn : document.getElementById('reload'),
+  startBtn : document.getElementById('start'),
+  // endBtn : document.getElementById('end'),
   choices : {},
   addEvent : function (){
     Object.keys(this.choices).forEach(function (key) {
@@ -17,7 +19,12 @@ const button = {
         judgeQuize();
       })
     });
-  } 
+  },
+  delButton : function(){
+    while (resChoices.firstChild) {
+      resChoices.removeChild(resChoices.firstChild);
+    }
+  },
 }
 
 const quizList = {
@@ -34,8 +41,20 @@ const quizList = {
     if(this.quizCount === this.quizLen){
       question.innerHTML = "正解数は"+quizList.correctAns+"／"+quizList.quizLen+"個です．";
       alert('終了');
+      const endBtn = document.createElement("button");
+      endBtn.innerText = "go top";
+      resChoices.appendChild(endBtn);
+      endBtn.id = 'end';
+      endBtn.addEventListener('click', function(){
+        window.location.reload();
+      })
     }
   },
+}
+
+function startQuiz(){
+  button.delButton();
+  makeQuiz();
 }
 
 function delQuiz() {
@@ -67,7 +86,7 @@ async function getQuizes() {
 
 function makeQuiz(){
   //問題文を変更
-  question.innerHTML = quizList.quiz.question;
+  question.innerHTML = "Q."+quizList.quizCount+" : "+quizList.quiz.question;
   // 選択肢を画面に追加する
   Object.keys(quizList.quiz.choices).forEach(function(key){
     const  choiceList = document.createElement("button");
@@ -87,12 +106,12 @@ async function judgeQuize(){
 
 // イベント
 window.addEventListener('load', getQuizes);
-button.addBtn.addEventListener('click', makeQuiz);
-button.delBtn.addEventListener('click', delQuiz);
-button.reloadBtn.addEventListener('click', function(){
-  window.location.reload();
-})
-// 選択肢からのイベント
+// button.addBtn.addEventListener('click', makeQuiz);
+// button.delBtn.addEventListener('click', delQuiz);
+// button.reloadBtn.addEventListener('click', function(){
+//   window.location.reload();
+// });
+button.startBtn.addEventListener('click', startQuiz);
 
 
 //やりたいことリスト

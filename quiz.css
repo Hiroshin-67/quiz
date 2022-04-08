@@ -1,32 +1,41 @@
 .quiz {
   font-size: 40px;
-  margin: 0 10%;
+  margin: 0 5%;
   background-color: aquamarine;
 }
 
 #question{
   text-align: center;
   padding: 5% 10%;
-  margin-bottom: 5%;
-  background-color: brown;
+  margin-bottom: 1%;
+  background-color: rgb(236, 164, 164);
 }
 
 div #resChoices {
+  height: 550px;
+  padding: 1% 5%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: blanchedalmond;
 }
 
 div > button {
-  width: 350px;
   padding: 2% 5%;
   text-align: center;
   margin: 10px auto;
   border-radius: 5%;
   border-style: solid;
-  display: flex;
-  flex-direction: row;
 }
 div > button:hover{
   padding: 2.1% 5.1%;
   background-color: aquamarine;
+}
+
+#start {
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: center;
+  align-items: center;
 }
