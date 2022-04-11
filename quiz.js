@@ -1,7 +1,12 @@
+// module
+export {quizList};
+import {count, countDown, addCount, delCount } from "./clock.js";
+
 // DOM 
 const question = document.getElementById('question');
 const resChoices = document.getElementById('resChoices');
 
+// button
 const button = {
   addBtn : document.getElementById('add'),
   delBtn : document.getElementById('del'),
@@ -9,17 +14,6 @@ const button = {
   startBtn : document.getElementById('start'),
   // endBtn : document.getElementById('end'),
   choices : {},
-  addEvent : function (){
-    Object.keys(this.choices).forEach(function (key) {
-      let select = document.getElementById(key);
-      document.getElementById(key).addEventListener('click', function(){
-        delQuiz();
-        quizList.checkAns(select.value);
-        quizList.checkEnd();
-        judgeQuize();
-      })
-    });
-  },
   delButton : function(){
     while (resChoices.firstChild) {
       resChoices.removeChild(resChoices.firstChild);
@@ -27,6 +21,7 @@ const button = {
   },
 }
 
+// quiz info
 const quizList = {
   quiz : null,
   quizCount : 0,
@@ -39,6 +34,7 @@ const quizList = {
   },
   checkEnd : function(){
     if(this.quizCount === this.quizLen){
+      delQuiz();
       question.innerHTML = "正解数は"+quizList.correctAns+"／"+quizList.quizLen+"個です．";
       alert('終了');
       const endBtn = document.createElement("button");
@@ -47,44 +43,30 @@ const quizList = {
       endBtn.id = 'end';
       endBtn.addEventListener('click', function(){
         window.location.reload();
-      })
+      });
+    }else{
+      quiz();
     }
   },
 }
 
-function startQuiz(){
-  button.delButton();
+// quiz main
+async function quiz(){
+  await getQuizes();
   makeQuiz();
-}
-
-function delQuiz() {
-  Object.keys(button.choices).forEach(function (key) {
-    delete button.choices[key];
-  });
-  while (resChoices.firstChild) {
-    resChoices.removeChild(resChoices.firstChild);
-  }
-  question.innerHTML = " "
-}
-
-function checkError(fn){
-  try{
-    fn();
-  }catch(error){
-    console.log(error.name);
-    console.log(error.message);
-  }
-}
+  countDown();
+};
 
 async function getQuizes() {
-    const res = await fetch("https://hiroshin67.com/api/quizApi.php");
-    const quizes = await res.json();
-    quizList.quiz = quizes[quizList.quizCount];
-    quizList.quizCount++;
-    quizList.quizLen = quizes.length;
+  const res = await fetch("https://hiroshin67.com/api/quizApi.php");
+  const quizes = await res.json();
+  quizList.quiz = quizes[quizList.quizCount];
+  quizList.quizCount++;
+  quizList.quizLen = quizes.length;
 };
 
 function makeQuiz(){
+  delQuiz();
   //問題文を変更
   question.innerHTML = "Q."+quizList.quizCount+" : "+quizList.quiz.question;
   // 選択肢を画面に追加する
@@ -96,27 +78,44 @@ function makeQuiz(){
     choiceList.value = quizList.quiz.choices[key];
     button.choices[key] = choiceList.value;
   });
-  button.addEvent();
-}
+  // delCount();
+  addCount(count.cnt);
+  // button.addEvent();
+  addEventBtn();
+};
 
-async function judgeQuize(){
-  await getQuizes();
-  makeQuiz();
-}
+function addEventBtn (){
+  Object.keys(button.choices).forEach(function(key){
+    let select = document.getElementById(key);
+    select.addEventListener('click', function(){
+      // countDownを終了
+      clearInterval(count.id);
+      // 答え合わせ
+      quizList.checkAns(select.value);
+      quizList.checkEnd();
+    })
+  })
+};
 
-// イベント
-window.addEventListener('load', getQuizes);
-// button.addBtn.addEventListener('click', makeQuiz);
-// button.delBtn.addEventListener('click', delQuiz);
-// button.reloadBtn.addEventListener('click', function(){
-//   window.location.reload();
-// });
-button.startBtn.addEventListener('click', startQuiz);
+function delQuiz() {
+  Object.keys(button.choices).forEach(function (key) {
+    delete button.choices[key];
+  });
+  while (resChoices.firstChild) {
+    resChoices.removeChild(resChoices.firstChild);
+  }
+  question.innerHTML = " ";
+  delCount();
+};
+
+// event
+button.startBtn.addEventListener('click', quiz);
 
 
 //やりたいことリスト
 /*
-1. タイム制限を表示
-2. 問題をランダムにする
-3. カテゴリ作成
+- 制限時間を表示
+- 最後に表で結果を表示
+- 問題をランダムにする
+- カテゴリ作成
 */
