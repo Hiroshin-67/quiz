@@ -11,3 +11,6 @@
 初期画面
 ![初期状態](https://user-images.githubusercontent.com/69710380/162669814-22562650-9b2b-4d52-ba87-ba70a122c627.png)
 データベースから取得した情報を元に問題と選択肢を作成します．
+
+緑のバーが制限時間を示しています．
+![選択画面](https://user-images.githubusercontent.com/69710380/162669803-d188b27c-09cf-4671-8469-9f37d1af7513.png)
