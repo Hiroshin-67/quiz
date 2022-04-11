@@ -9,5 +9,5 @@
 
 # DEMO
 初期画面
-[初期状態](https://user-images.githubusercontent.com/69710380/162669814-22562650-9b2b-4d52-ba87-ba70a122c627.png)
+![初期状態](https://user-images.githubusercontent.com/69710380/162669814-22562650-9b2b-4d52-ba87-ba70a122c627.png)
 データベースから取得した情報を元に問題と選択肢を作成します．
