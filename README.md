@@ -9,8 +9,8 @@
 
 # DEMO
 初期画面
-![初期状態](https://user-images.githubusercontent.com/69710380/162669814-22562650-9b2b-4d52-ba87-ba70a122c627.png)
+![初期状態](https://user-images.githubusercontent.com/69710380/162865541-601d05fe-a42e-4a29-a3f3-dbb49ac19d1d.png)
 データベースから取得した情報を元に問題と選択肢を作成します．
 
 緑のバーが制限時間を示しています．
-![選択画面](https://user-images.githubusercontent.com/69710380/162669803-d188b27c-09cf-4671-8469-9f37d1af7513.png)
+![選択画面](https://user-images.githubusercontent.com/69710380/162865549-5971b659-a0e7-4275-9ac4-f8d6c658b30b.png)
