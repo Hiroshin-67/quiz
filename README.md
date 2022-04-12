@@ -14,3 +14,6 @@
 
 緑のバーが制限時間を示しています．
 ![選択画面](https://user-images.githubusercontent.com/69710380/162865549-5971b659-a0e7-4275-9ac4-f8d6c658b30b.png)
+
+# 環境
+PCでの操作を想定しています．JavaScriptを有効にしてください
