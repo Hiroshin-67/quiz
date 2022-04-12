@@ -1,35 +1,33 @@
-.quiz {
-  font-size: 40px;
-  /* margin: 0 5%; */
-  background-color: aquamarine;
-}
-
 #question{
   text-align: center;
-  padding: 5% 10%;
-  margin-bottom: 1%;
-  background-color: rgb(236, 164, 164);
+  font-size: 200%;
+  padding: 2% 10%;
+  border: 4px black solid;
+  /* margin-bottom: 1%; */
+  background-color: whitesmoke;
 }
 
 div #resChoices {
   height: 550px;
-  padding: 1% 5%;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: blanchedalmond;
+  /* background-color: blanchedalmond; */
 }
 
 div > button {
-  padding: 2% 5%;
+  width: 25%;
+  padding: 1% 3%;
   text-align: center;
+  font-size: 150%;
   margin: 10px auto;
-  border-radius: 5%;
-  border-style: solid;
+  border-radius: 15px;
+  border: 3px black solid;
+  background-color: aliceblue;
 }
 div > button:hover{
-  padding: 2.1% 5.1%;
+  padding: 1.1% 3.1%;
   background-color: aquamarine;
 }
 
@@ -48,7 +46,7 @@ div > button:hover{
 
 #count {
   height: 100px;
-  width: 10%;
+  width: 5%;
   /* margin: 5px 5px; */
   background-color: greenyellow;
 }

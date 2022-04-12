@@ -1,6 +1,7 @@
 // module
 export {quizList};
 import {count, countDown, addCount, delCount } from "./clock.js";
+import { generateRandomArray } from "./random.js";
 
 // DOM 
 const question = document.getElementById('question');
@@ -19,14 +20,15 @@ const button = {
       resChoices.removeChild(resChoices.firstChild);
     }
   },
-}
+};
 
 // quiz info
 const quizList = {
   quiz : null,
   quizCount : 0,
   correctAns : 0,
-  quizLen : null,
+  quizLen : 10,
+  quizId : null,
   checkAns : function(res){
     if(this.quiz.ans === res){
       this.correctAns++;
@@ -38,7 +40,7 @@ const quizList = {
       question.innerHTML = "正解数は"+quizList.correctAns+"／"+quizList.quizLen+"個です．";
       alert('終了');
       const endBtn = document.createElement("button");
-      endBtn.innerText = "go top";
+      endBtn.innerText = "BACK TO TOP";
       resChoices.appendChild(endBtn);
       endBtn.id = 'end';
       endBtn.addEventListener('click', function(){
@@ -48,7 +50,7 @@ const quizList = {
       quiz();
     }
   },
-}
+};
 
 // quiz main
 async function quiz(){
@@ -60,9 +62,12 @@ async function quiz(){
 async function getQuizes() {
   const res = await fetch("https://hiroshin67.com/api/quizApi.php");
   const quizes = await res.json();
-  quizList.quiz = quizes[quizList.quizCount];
+  if(quizList.quizId === null){
+    quizList.quizId = generateRandomArray(0, quizes.length-1, 10);
+  }
+  quizList.quiz = quizes[quizList.quizId[quizList.quizCount]];
   quizList.quizCount++;
-  quizList.quizLen = quizes.length;
+  // quizList.quizLen = quizes.length;
 };
 
 function makeQuiz(){
@@ -71,12 +76,14 @@ function makeQuiz(){
   question.innerHTML = "Q."+quizList.quizCount+" : "+quizList.quiz.question;
   // 選択肢を画面に追加する
   Object.keys(quizList.quiz.choices).forEach(function(key){
-    const  choiceList = document.createElement("button");
-    choiceList.innerText = quizList.quiz.choices[key];
-    resChoices.appendChild(choiceList);
-    choiceList.id = key;
-    choiceList.value = quizList.quiz.choices[key];
-    button.choices[key] = choiceList.value;
+    if(quizList.quiz.choices[key]){
+      const  choiceList = document.createElement("button");
+      choiceList.innerText = quizList.quiz.choices[key];
+      resChoices.appendChild(choiceList);
+      choiceList.id = key;
+      choiceList.value = quizList.quiz.choices[key];
+      button.choices[key] = choiceList.value;
+    }
   });
   // delCount();
   addCount(count.cnt);

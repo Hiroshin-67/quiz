@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
   <link href="quiz.css" rel="stylesheet">
-  <title>Document</title>
+  <title>Quiz</title>
 </head>
 <body>
   <div>
@@ -15,21 +15,12 @@
     </div>
   </div>
   <div class="quiz" >
-    <div id="timer">
-      <div id="count"></div>
-      <div id="count"></div>
-      <div id="count"></div>
-      <div id="count"></div>
-      <div id="count"></div>
-      <div id="count"></div>
-      <div id="count"></div>
-      <div id="count"></div>
-      <div id="count"></div>
-      <div id="count"></div>
-    </div>
+    <div id="timer"></div>
     <div id="question">Quiz</div>
     <div id="resChoices">
-      <button id="start">start!</button>
+      <button id="start">START!</button>
+      <button id="home" form="go-home">BACK TO HOME</button>
+      <form id="go-home" action="../index.html" method="post"></form>
     </div>
   </div>
   <script type="module" src="quiz.js"></script>

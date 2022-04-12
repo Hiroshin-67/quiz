@@ -41,7 +41,7 @@ const timer = document.getElementById('timer');
 
 const count = {
   id : null,
-  cnt : 10
+  cnt : 20
 }
 
 function countDown(){
