@@ -51,11 +51,8 @@ function countDown(){
   console.log("count down");
   const now = new Date();
     if (now.getTime() > endDt.getTime()){
-      // console.log(quizList.quizLen);
-      // console.log(quizList.quizCount);
-      // console.log("clearInterval,");
       clearInterval(count.id);
-      // console.log("checkEnd");
+      quizList.checkAns();
       quizList.checkEnd();
     } else {
       timer.removeChild(timer.firstChild);
@@ -78,7 +75,3 @@ function addCount(num){
   }
   timer.appendChild(fragment);
 }
-
-
-// 1秒ごとにclock関数を呼び出す
-// setInterval(clock, 1000);

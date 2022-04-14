@@ -17,8 +17,8 @@ div #resChoices {
 }
 
 div > button {
-  width: 25%;
-  padding: 1% 3%;
+  width: 300px;
+  padding: 1% 1%;
   text-align: center;
   font-size: 150%;
   margin: 10px auto;
@@ -27,7 +27,7 @@ div > button {
   background-color: aliceblue;
 }
 div > button:hover{
-  padding: 1.1% 3.1%;
+  padding: 1.2% 1.2%;
   background-color: aquamarine;
 }
 
@@ -49,4 +49,8 @@ div > button:hover{
   width: 5%;
   /* margin: 5px 5px; */
   background-color: greenyellow;
+}
+
+#closed {
+  display: none;
 }
