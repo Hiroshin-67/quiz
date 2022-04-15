@@ -1,6 +1,6 @@
 // module
 export {quizList};
-import {count, countDown, addCount, delCount } from "./clock.js";
+import {count, countDown, addCount, delCount, sleep} from "./clock.js";
 import { generateRandomArray } from "./random.js";
 
 // DOM 
@@ -43,11 +43,14 @@ const quizList = {
   quizLen : 10,
   quizId : null,
   checkAns : function(res){
+    let correct = 0;
     quizResult.results = {"num" : quizList.quizCount, "question" : quizList.quiz.question, "choice" : res, "result" : '×'};
     if(this.quiz.ans === res){
       this.correctAns++;
       quizResult.results["result"] = '○';
+      correct = 1;
     }
+    maruBatsu(correct);
     quizResult.recoadResult(quizResult.results);
     console.log(quizResult.resultRecoad);
   },
@@ -94,7 +97,7 @@ const quizResult = {
     })
     resultTable.appendChild(fragment);
   },
-   resultOnOff : function(){
+  resultOnOff : function(){
     const resultClass = document.getElementsByClassName('result');
      if(resultClass[0].id === 'closed'){
         resultClass[0].id = 'opened';
@@ -110,6 +113,7 @@ const quizResult = {
 // quiz main
 async function quiz(){
   await getQuizes();
+  await sleep(500);
   makeQuiz();
   countDown();
 };
@@ -170,21 +174,29 @@ function delQuiz() {
   delCount();
 };
 
+async function maruBatsu(res){
+  if(res === 1){
+    document.getElementsByClassName('circle')[0].id = 'open';
+    await sleep(500);
+    document.getElementsByClassName('circle')[0].id = 'closed';
+    // await sleep(1000);
+  } else {
+    document.getElementsByClassName('cross')[0].id = 'open';
+    await sleep(500);
+    document.getElementsByClassName('cross')[0].id = 'closed';
+    // await sleep(1000);
+  }
+}
+
 // event
 button.startBtn.addEventListener('click', quiz);
 
-// resultBtn.addEventListener('click', function(){
-//   if(document.getElementById('closed')){
-//     document.getElementById('closed').id = 'opened';
-//   } else {
-//     document.getElementById('opened').id = 'closed';
-//   }
-// });
 
 //やりたいことリスト
 /*
 - 制限時間を表示
 - 最後に表で結果を表示
 - 問題をランダムにする
+- まるバツ表示
 - カテゴリ作成
 */

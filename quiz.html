@@ -17,13 +17,19 @@
   <div class="quiz" >
     <div id="timer"></div>
     <div id="question">Quiz</div>
+
+    <!-- まるバツ -->
+    <div class="cross" id="closed"><span class="batsu"></span></div>
+    <div class="circle" id="closed"><span class="maru"></span></div>
+
     <div id="resChoices">
       <button id="start">START!</button>
-      <div class="result" id="closed">結果発表！！</div>
+      <!-- <div class="result" id="closed">結果発表！！</div> -->
       <button id="home" form="go-home">BACK TO HOME</button>
       <form id="go-home" action="../index.html" method="post"></form>
     </div>
   </div>
+  
   <script type="module" src="quiz.js"></script>
   <script type="module" src="clock.js"></script>
 </body>

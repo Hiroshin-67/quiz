@@ -1,5 +1,5 @@
 import {quizList} from "./quiz.js";
-export {count, countDown, addCount, delCount}
+export {count, countDown, addCount, delCount, sleep}
 function clock() {
   // 現在の日時・時刻の情報を取得
   const d = new Date();
@@ -74,4 +74,11 @@ function addCount(num){
     fragment.appendChild(count);
   }
   timer.appendChild(fragment);
+}
+
+function sleep(waitSec){
+  return new Promise(function(resolove){
+    setTimeout(function(){
+      resolove()}, waitSec);
+  });
 }
