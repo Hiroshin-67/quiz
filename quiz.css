@@ -55,14 +55,20 @@ div > button:hover{
   display: none;
 }
 
+.marubatsu {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  top:calc(50% - 300px/2);
+  left:calc(50% - 300px/2);
+}
+
 .cross{
   /* background-color: black; */
-  margin: auto;
-  width: 400px;
-  height: 400px;
-  position: absolute;
-  right: 0;
-  left: 0;
+  margin: 0 auto;
+  width: 300px;
+  height: 300px;
+  /* position: absolute; */
 }
 
 .batsu::before, .batsu::after{
@@ -73,24 +79,27 @@ div > button:hover{
   height: 50px;
   transform: rotate(45deg);
   transform-origin: center;
-  position: absolute;
-  top: 170px;
+  position: relative;
+  top: 126px;
+  left: -51px;
 }
 
 .batsu::after{
   transform: rotate(-45deg);
-  /* transform-origin: 50% 0; */
-  /* position: absolute; */
+  transform-origin: 50% 0;
+  position: relative;
+  top: 83px;
+  left: -67px;
 }
 
 .circle {
-  width: 30%;
-  padding-top: 30%;
-  /* height: 400px; */
+  width: 300px;
+  height: 300px;
   border: 30px solid red;
   border-radius: 100%;
-  margin: auto;
-  position: absolute;
-  /*top : 20%;*/
+  margin: 0 auto;
+  /* position: absolute;
+  top : 40%;
+  left: 38%; */
   /* background-color: aquamarine; */
 }
