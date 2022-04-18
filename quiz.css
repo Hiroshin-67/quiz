@@ -1,10 +1,22 @@
 #question{
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  /* text-align: center; */
   font-size: 200%;
-  padding: 2% 10%;
+  padding: 2% 1%;
   border: 4px black solid;
   /* margin-bottom: 1%; */
   background-color: whitesmoke;
+}
+#question-num{
+  font-size: 40px;
+  margin: auto 0;
+  padding: 0 15px 0 5px;
+}
+
+#question-main{
+  margin: auto 0;
+  font-size: 25px;
 }
 
 div #resChoices {
@@ -46,7 +58,7 @@ div > button:hover{
 
 #count {
   height: 100px;
-  width: 5%;
+  /* width: 5%; */
   /* margin: 5px 5px; */
   background-color: greenyellow;
 }
@@ -102,4 +114,37 @@ div > button:hover{
   top : 40%;
   left: 38%; */
   /* background-color: aquamarine; */
+}
+
+@media screen and (max-width:480px) {
+  #question{
+    /* text-align: center; */
+    font-size: 150%;
+    padding: 2% 1%;
+    border: 4px black solid;
+    /* margin-bottom: 1%; */
+    background-color: whitesmoke;
+  }
+
+  #question-num{
+    font-size: 25px;
+    margin: auto 0;
+    padding: 0 15px 0 5px;
+  }
+  
+  #question-main{
+    margin: auto 0;
+    font-size: 20px;
+  }
+
+  #timer {
+    height: 60px;
+    display: flex;
+    justify-content: end;
+  }
+
+  #count {
+    height: 60px;
+    background-color: greenyellow;
+  }
 }

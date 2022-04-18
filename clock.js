@@ -41,7 +41,7 @@ const timer = document.getElementById('timer');
 
 const count = {
   id : null,
-  cnt : 20
+  cnt : 15
 }
 
 function countDown(){
@@ -52,7 +52,7 @@ function countDown(){
   const now = new Date();
     if (now.getTime() > endDt.getTime()){
       clearInterval(count.id);
-      quizList.checkAns();
+      quizList.checkAns("TIME OVER");
       quizList.checkEnd();
     } else {
       timer.removeChild(timer.firstChild);
@@ -68,9 +68,11 @@ function delCount(){
 
 function addCount(num){
   let fragment = document.createDocumentFragment();
+  let countNum = 100/num;
   for (let index = 0; index < num; index++) {
     let count = document.createElement('div');
     count.id = 'count';
+    count.style.width = countNum+'%';
     fragment.appendChild(count);
   }
   timer.appendChild(fragment);

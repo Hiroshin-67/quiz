@@ -6,8 +6,8 @@ import { generateRandomArray } from "./random.js";
 // DOM 
 const question = document.getElementById('question');
 const resChoices = document.getElementById('resChoices');
-// const resultBtn = document.getElementById('quiz-result');
-
+const questionNum = document.getElementById('question-num');
+const questionMain = document.getElementById('question-main');
 
 
 
@@ -132,7 +132,8 @@ async function getQuizes() {
 function makeQuiz(){
   delQuiz();
   //問題文を変更
-  question.innerHTML = "Q."+quizList.quizCount+" : "+quizList.quiz.question;
+  questionNum.innerText = "Q."+quizList.quizCount+": ";
+  questionMain.innerText= quizList.quiz.question;
   // 選択肢を画面に追加する
   Object.keys(quizList.quiz.choices).forEach(function(key){
     if(quizList.quiz.choices[key]){
@@ -170,7 +171,8 @@ function delQuiz() {
   while (resChoices.firstChild) {
     resChoices.removeChild(resChoices.firstChild);
   }
-  question.innerHTML = " ";
+  questionNum.innerText = ""
+  questionMain.innerText = "";
   delCount();
 };
 
