@@ -20,7 +20,8 @@
 }
 
 div #resChoices {
-  height: 550px;
+  height: 350px;
+  margin-top: 10%;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -57,9 +58,8 @@ div > button:hover{
 }
 
 #count {
+  /* widthは clock.jsのaddCountで指定*/
   height: 100px;
-  /* width: 5%; */
-  /* margin: 5px 5px; */
   background-color: greenyellow;
 }
 
@@ -114,6 +114,24 @@ div > button:hover{
   top : 40%;
   left: 38%; */
   /* background-color: aquamarine; */
+}
+
+table, tr, th, td{
+  border: 2px solid;
+  text-align: center;
+}
+
+table {
+  margin: 0 auto 10%;
+  width: 90%;
+}
+
+#numHead {
+  width: 5%;
+}
+
+#ansHead {
+  width: 5%;
 }
 
 @media screen and (max-width:480px) {

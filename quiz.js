@@ -59,12 +59,12 @@ const quizList = {
       delQuiz();
       question.innerHTML = "正解数は"+quizList.correctAns+"／"+quizList.quizLen+"個です．";
       alert('終了');
-      button.addResultBtn();
-      quizResult.makeResult();
       const endBtn = document.createElement("button");
       endBtn.innerText = "BACK TO TOP";
       resChoices.appendChild(endBtn);
       endBtn.id = 'end';
+      button.addResultBtn();
+      quizResult.makeResult2();
       endBtn.addEventListener('click', function(){
         window.location.reload();
       });
@@ -88,24 +88,76 @@ const quizResult = {
     resultTable.id = 'closed';
     resChoices.appendChild(resultTable);
     this.resultRecoad.forEach(function(result){
-      let r = document.createElement('div');
+      let r = document.createElement('p');
       // r.id = 'closed';
       r.innerText = 'Q.' + result.num+': ' + result.question + ': ' + result.choice + ' : ' + result.result;
-      console.log(result);
       fragment.appendChild(r);
-      console.log("foo");
     })
     resultTable.appendChild(fragment);
+  },
+  makeResult2 : function(){
+    const resultTableHtml = document.getElementById("result-table");
+    const resultTable = document.createElement("table");
+    resultTable.className = "result";
+    resultTable.id = "closed";
+    resultTableHtml.appendChild(resultTable);
+    // const resultTableHead = document.createElement("th");
+    // resultTable.appendChild(resultTableHead);
+    const headRow = document.createElement("tr");
+    headRow.id = 'headrow';
+    resultTable.appendChild(headRow);
+    const Qnum = document.createElement("th");
+    Qnum.id = "numHead";
+    Qnum.innerText = "番号";
+    headRow.appendChild(Qnum);
+    const Qmain = document.createElement("th");
+    Qmain.id= "mainHead";
+    Qmain.innerText = "問題";
+    headRow.appendChild(Qmain);
+    const Qselect = document.createElement("th");
+    Qselect.id = "selectHead";
+    Qselect.innerText = "解答";
+    headRow.appendChild(Qselect);
+    const Qans = document.createElement("th");
+    Qans.id = "ansHead";
+    Qans.innerText = "結果";
+    headRow.appendChild(Qans);
+    this.resultRecoad.forEach(function(result){
+      const row = document.createElement("tr");
+      const num = document.createElement("td")
+      num.innerText = result.num;
+      const question = document.createElement("td")
+      question.innerText = result.question;
+      const choice = document.createElement("td")
+      choice.innerText = result.choice;
+      const yourResult = document.createElement("td")
+      yourResult.innerText = result.result;
+      resultTable.appendChild(row);
+      row.appendChild(num);
+      row.appendChild(question);
+      row.appendChild(choice);
+      row.appendChild(yourResult);
+    })
+
+
   },
   resultOnOff : function(){
     const resultClass = document.getElementsByClassName('result');
      if(resultClass[0].id === 'closed'){
         resultClass[0].id = 'opened';
         document.getElementById('resultTable').innerText = '詳細を閉じる'
+        window.scrollTo({
+          top : document.getElementById('headrow').getBoundingClientRect().top,
+          behavior : 'smooth',
+        });
       } else {
         resultClass[0].id = 'closed';
         document.getElementById('resultTable').innerText = '詳細を見る'
-    }
+        window.scrollTo({
+          top : resChoices.getBoundingClientRect().top,
+          behavior : 'smooth',
+        });
+      }
   }
 }
 
