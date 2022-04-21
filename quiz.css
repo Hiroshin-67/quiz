@@ -116,6 +116,12 @@ div > button:hover{
   /* background-color: aquamarine; */
 }
 
+#result-table{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 table, tr, th, td{
   border: 2px solid;
   text-align: center;

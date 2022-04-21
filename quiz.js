@@ -30,7 +30,7 @@ const button = {
     resultBtn.id = 'resultTable'
     resChoices.appendChild(resultBtn);
     resultBtn.addEventListener('click', function(){
-      quizResult.resultOnOff();
+      resultOnOff();
     });
   }
 };
@@ -138,29 +138,36 @@ const quizResult = {
       row.appendChild(choice);
       row.appendChild(yourResult);
     })
-
-
+    const resultCloseBtn = document.createElement("button");
+    resultCloseBtn.className = 'result';
+    resultCloseBtn.id = 'closed';
+    resultCloseBtn.innerText = '詳細を閉じる';
+    resultTableHtml.appendChild(resultCloseBtn);
+    resultCloseBtn.addEventListener('click', function(){
+      resultOnOff();
+    })
   },
-  resultOnOff : function(){
-    const resultClass = document.getElementsByClassName('result');
-     if(resultClass[0].id === 'closed'){
-        resultClass[0].id = 'opened';
-        document.getElementById('resultTable').innerText = '詳細を閉じる'
-        window.scrollTo({
-          top : document.getElementById('headrow').getBoundingClientRect().top,
-          behavior : 'smooth',
-        });
-      } else {
-        resultClass[0].id = 'closed';
-        document.getElementById('resultTable').innerText = '詳細を見る'
-        window.scrollTo({
-          top : resChoices.getBoundingClientRect().top,
-          behavior : 'smooth',
-        });
-      }
-  }
 }
-
+function resultOnOff(){
+  const resultClass = document.getElementsByClassName('result');
+   if(resultClass[0].id === 'closed'){
+      resultClass[0].id = 'opened';
+      resultClass[1].id = 'opened';
+      document.getElementById('resultTable').innerText = '詳細を閉じる'
+      window.scrollTo({
+        top : document.getElementById('headrow').getBoundingClientRect().top,
+        behavior : 'smooth',
+      });
+    } else {
+      window.scrollTo({
+        top : 0,
+        behavior : 'smooth',
+      });
+      resultClass[0].id = 'closed';
+      resultClass[1].id = 'closed';
+      document.getElementById('resultTable').innerText = '詳細を見る'
+    }
+}
 
 // quiz main
 async function quiz(){
